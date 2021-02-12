@@ -15,6 +15,7 @@ public class HR_Main {
         Employee e2=new Employee();
         
         e1.id= 1;
+        
         e1.firstName= JOptionPane.showInputDialog("Ingrese el Nombre");
         e1.lastName= JOptionPane.showInputDialog("Ingrese el Apellido");
         e1.age= Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad"));
