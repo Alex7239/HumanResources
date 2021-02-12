@@ -14,24 +14,26 @@ public class HR_Main {
         Employee e1=new Employee();
         Employee e2=new Employee();
         
-        
         e1.id= 1;
-        e1.firstName= "Tiburcio";
-        e1.lastName= "Smith";
-        e1.age= 20;
-        e1.email="tiburcio@cesba.edu.mx";
-        e1.phoneNumber=1213456789;
-        e1.salary=30000.25;
-        e1.hiredate="02-02-21";
+        e1.firstName= JOptionPane.showInputDialog("Ingrese el Nombre");
+        e1.lastName= JOptionPane.showInputDialog("Ingrese el Apellido");
+        e1.age= Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad"));
+        e1.email=JOptionPane.showInputDialog("Ingrese el Correo");
+        e1.phoneNumber=Integer.parseInt(JOptionPane.showInputDialog("Ingrese un numero telefonico"));
+        e1.salary=Double.parseDouble(JOptionPane.showInputDialog("Ingrese su salario"));
+        e1.hiredate=JOptionPane.showInputDialog("Ingrese la Fecha de Contratacion");
         
         e2.id= 2;
-        e2.firstName= "Felipa";
-        e2.lastName= "Perez";
-        e2.age= 30;
-        e2.email="felipa@cesba.edu.mx";
-        e2.phoneNumber=967650321;
-        e2.salary=33000.33;
-        e2.hiredate="01-01-21";
+        e2.firstName= JOptionPane.showInputDialog("Ingrese el Nombre");
+        e2.lastName= JOptionPane.showInputDialog("Ingrese el Apellido");
+        e2.age= Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad"));
+        e2.email=JOptionPane.showInputDialog("Ingrese el Correo");
+        e2.phoneNumber=Integer.parseInt(JOptionPane.showInputDialog("Ingrese un numero telefonico"));
+        e2.salary=Double.parseDouble(JOptionPane.showInputDialog("Ingrese su salario"));
+        e2.hiredate=JOptionPane.showInputDialog("Ingrese la Fecha de Contratacion");
+        
+        
+     
         
         e1.getDetails();
         System.out.print("------------------------------");
