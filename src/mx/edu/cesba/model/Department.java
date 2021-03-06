@@ -12,7 +12,9 @@ public class Department {
     
     
     public void getDetails() { //METODO
-       
+       System.out.println("id:" +id);
+       System.out.println("Title:"+title);
+       System.out.println("Location:"+location);
        
        
 }
