@@ -38,6 +38,7 @@ public class conexion {
             Statement st= cn.createStatement();
             ResultSet rs= st.executeQuery(sql);
             
+            /*Primer CONEXION*/
             while(rs.next()){
                 System.out.println(rs.getInt(1));
                 System.out.println(rs.getString(2));
