@@ -39,7 +39,7 @@ public class conexion {
             ResultSet rs= st.executeQuery(sql);
             
             //Primer CONEXION
-            while(rs.next()){
+           /* while(rs.next()){
                 System.out.println(rs.getInt(1));
                 System.out.println(rs.getString(2));
                 System.out.println(rs.getString(3));
@@ -49,8 +49,18 @@ public class conexion {
                 System.out.println(rs.getDouble(7));
                 System.out.println(rs.getString(8));
                 System.out.println("------------------------");
+            }*/
+            while(rs.next()){
+                System.out.println(rs.getInt("id"));
+                System.out.println(rs.getString("firstName"));
+                System.out.println(rs.getString("lastName"));
+                System.out.println(rs.getInt("age"));
+                System.out.println(rs.getString("email"));
+                System.out.println(rs.getInt("phoneNumber"));
+                System.out.println(rs.getDouble("salary"));
+                System.out.println(rs.getString("hiredate"));
+                System.out.println("------------------------");
             }
-            
         }
         catch (Exception e){
             System.err.println("Sin conexion a la base de datos");
