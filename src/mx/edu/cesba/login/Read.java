@@ -86,6 +86,11 @@ public class Read extends javax.swing.JFrame {
                 "id", "FirstName", "LastName", "Age", "Email", "PhoneNumber", "Salary", "HireDate"
             }
         ));
+        TablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDatosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaDatos);
 
         jLabel2.setText("Id");
@@ -164,8 +169,23 @@ public class Read extends javax.swing.JFrame {
 
         btn_borrar.setForeground(new java.awt.Color(255, 0, 0));
         btn_borrar.setText("Borrar");
+        btn_borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_borrarActionPerformed(evt);
+            }
+        });
+        btn_borrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_borrarKeyPressed(evt);
+            }
+        });
 
         btn_actualizar.setText("Actualizar");
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
 
         btn_consultar.setText("Consultar");
         btn_consultar.addActionListener(new java.awt.event.ActionListener() {
@@ -404,15 +424,83 @@ public class Read extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_lastnameKeyTyped
 
     private void txt_emailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_emailKeyTyped
- char c=evt.getKeyChar();
-       if(Character.isLowerCase(c)){
-           String cad=(""+c).toUpperCase();
-           c=cad.charAt(0);
-           evt.setKeyChar(c);
-           
-       }
+ 
             // TODO add your handling code here:
     }//GEN-LAST:event_txt_emailKeyTyped
+       void actualizar(){
+        int id= Integer.parseInt(txt_id.getText());
+        String firstName =txt_firstname.getText();
+        String lastName =txt_lastname.getText();
+        int age=Integer.parseInt(txt_age.getText());
+        String email =txt_email.getText();
+        int phoneNumber=Integer.parseInt(txt_phonenumber.getText());
+        Double salary=Double.parseDouble(txt_salary.getText());
+        String hireDate =(txt_hiredate.getText().trim());
+        String sql= "UPDATE employee set id='"+id+"', firstName='"+firstName+"',lastName='"+lastName+"',age='"+age+"', email='"+email+"',phoneNumber='"+phoneNumber+"',salary='"+salary+"',hiredate='"+hireDate+"'where id="+id;
+        
+        try{
+            cn = con.getConnection();
+                    st = cn.createStatement();
+                    st.executeUpdate(sql);
+                    
+                    JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+                    limpiartable();
+                    
+        }catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Datos no se guardaron correctamente");
+                    limpiartable();
+        
+                    
+        }
+       
+       
+       }
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        actualizar();
+        listar();
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void TablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosMouseClicked
+        int fila=TablaDatos.getSelectedRow();
+        
+        if (fila == -1){
+            JOptionPane.showMessageDialog(null,"NO HAS SELECCIONADO EL USUARIO"); 
+        
+        }else {
+            int row=Integer.parseInt((String)TablaDatos.getValueAt(fila, 0).toString());
+            int id=Integer.parseInt((String)TablaDatos.getValueAt(fila, 0).toString());
+            
+            String firstname=(String)TablaDatos.getValueAt(fila,1);
+            String lastname=(String)TablaDatos.getValueAt(fila,2);
+            int age=Integer.parseInt((String)TablaDatos.getValueAt(fila, 3).toString());
+            String email=(String)TablaDatos.getValueAt(fila,4);
+            int phonenumber=Integer.parseInt((String)TablaDatos.getValueAt(fila, 5).toString());
+            double salary=Double.parseDouble((String)TablaDatos.getValueAt(fila,6).toString());
+            String hiredate=(String)TablaDatos.getValueAt(fila,7);
+            
+            txt_id.setText(""+id);
+            txt_firstname.setText(firstname);
+            txt_lastname.setText(lastname);
+            txt_age.setText(""+age);
+            txt_email.setText(email);
+            txt_phonenumber.setText(""+phonenumber);
+            txt_salary.setText(""+salary);
+            txt_hiredate.setText(hiredate);
+            
+                    
+            
+            
+        }
+    }//GEN-LAST:event_TablaDatosMouseClicked
+
+    private void btn_borrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_borrarKeyPressed
+        
+    }//GEN-LAST:event_btn_borrarKeyPressed
+
+    private void btn_borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_borrarActionPerformed
+        eliminar();
+        listar();
+    }//GEN-LAST:event_btn_borrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,10 +580,11 @@ public class Read extends javax.swing.JFrame {
                     st.executeUpdate(sql);
                     
                     JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-                    limpiartable();
+                    
                     
         }catch (Exception e){
                     JOptionPane.showMessageDialog(null, "Datos no se guardaron correctamente");
+                    limpiartable();
         
                     
         }
@@ -504,6 +593,28 @@ public class Read extends javax.swing.JFrame {
         for (int i=0; 1<=TablaDatos.getRowCount();i++){
             modelo.removeRow(i);
             i=i-1;
+        }
+    }
+    
+    void eliminar(){
+        int fila=TablaDatos.getRowCount();
+        int id=Integer.parseInt(txt_id.getText());
+        
+        if(fila==-1){
+            JOptionPane.showMessageDialog(null, "SELECCIONE FILA PARA BORRAR REGISTRO");
+        
+        }else {
+            try{
+                String sql="DELETE FROM EMPLOYEE WHERE id="+id;
+                cn = con.getConnection();
+                    st = cn.createStatement();
+                    st.executeUpdate(sql);
+                    
+                    JOptionPane.showMessageDialog(null, "Datos borrados correctamente");
+                    limpiartable();
+            }catch(Exception e){
+                
+            }
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
