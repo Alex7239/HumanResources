@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Nombre: Valenzuela Romero Manuel Alejandro
+Matricula:2022742
  */
 package mx.edu.cesba.login;
 import conexion.Conexion;
