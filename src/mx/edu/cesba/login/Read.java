@@ -341,12 +341,15 @@ public class Read extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Favor de ingresar edad mayor a 18 años");
                 }else{
             Agregar();
+            limpiartable();
+            listar();
             }
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
-                listar();        // TODO add your handling code here:
+        limpiartable();     
+        listar();        // TODO add your handling code here:
     }//GEN-LAST:event_btn_consultarActionPerformed
 
     private void txt_ageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ageKeyTyped
@@ -357,6 +360,7 @@ public class Read extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null,"Ingresa solo numeros");
                 }
                    
+                
                 
            
 
